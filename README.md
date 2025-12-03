@@ -23,3 +23,4 @@ Spots is a modern photo sharing application that allows users to upload, browse,
 ## Deployment
 
 This webpage is deployed to GitHub Pages;
+https://zephyrd18.github.io/se_project_spots/
