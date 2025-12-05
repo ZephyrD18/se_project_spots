@@ -7,6 +7,7 @@
   object-fit: cover;
   display: block;
   border-radius: 8px;
+  margin-bottom: 12px;
 }
 
 .card__content {
@@ -18,15 +19,12 @@
 .card__title {
   font-family: Poppins;
   font-weight: 500;
-  font-style: Medium;
   font-size: 20px;
   line-height: 120%;
-  letter-spacing: 0%;
-  display: -webkit-box;
-  overflow: hidden;
+  letter-spacing: 0;
   text-overflow: ellipsis;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .card__like-button {
@@ -49,6 +47,6 @@
   }
 
   .card__title {
-    max-width: 288px;
+    max-width: 235px;
   }
 }
