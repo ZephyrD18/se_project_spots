@@ -10,10 +10,21 @@
   justify-content: center;
   align-items: center;
   padding: 10px;
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    visibility 0s linear 0.3s;
+  pointer-events: none;
 }
 
 .modal_is-opened {
   visibility: visible;
+  opacity: 1;
+  transition:
+    opacity 0.3s ease,
+    visibility 0s;
+
+  pointer-events: auto;
 }
 
 .modal__container {
