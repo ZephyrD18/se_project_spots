@@ -61,6 +61,7 @@
   width: 149px;
   border-radius: 8px;
   cursor: pointer;
+  border: none;
 }
 
 .profile__add-button:hover {
@@ -68,6 +69,8 @@
 }
 
 .profile__edit-button {
+  display: flex;
+  gap: 8px;
   margin: auto auto 0 0;
   font-family: Poppins, Arial, Helvetica, sans-serif;
   font-weight: 500;
