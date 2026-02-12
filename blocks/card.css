@@ -1,4 +1,5 @@
 .card {
+  position: relative;
 }
 
 .card__image {
@@ -29,6 +30,22 @@
   margin: 0;
 }
 
+.card__delete-button {
+  background-image: url(../images/Delete.svg);
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.card__delete-button:hover {
+  background-image: url(../images/DeleteHover.svg);
+}
+
 .card__like-button {
   background-image: url("../images/Union.svg");
   width: 23px;
@@ -43,6 +60,17 @@
 
 .card__like-button:hover {
   opacity: 1;
+}
+
+.card__like-button_active {
+  background-image: url(../images/LikeActive.svg);
+  cursor: pointer;
+  opacity: 1;
+  background-repeat: no-repeat;
+}
+
+.card__like-button_active:hover {
+  opacity: 0.4;
 }
 
 @media screen and (max-width: 627px) {
