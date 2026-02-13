@@ -9,6 +9,9 @@
   display: block;
   border-radius: 8px;
   margin-bottom: 12px;
+}
+
+.card__image:hover {
   cursor: pointer;
 }
 
@@ -29,6 +32,7 @@
   white-space: nowrap;
   overflow: hidden;
   margin: 0;
+  max-width: 353px;
 }
 
 .card__delete-button {

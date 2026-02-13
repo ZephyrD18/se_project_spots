@@ -65,6 +65,7 @@
   font-weight: 500;
   font-size: 20px;
   padding: 4px 8px;
+  margin: 4px 0;
 }
 
 .modal__close-button {
@@ -95,7 +96,7 @@
 
 .modal__title {
   margin: 0 0 32px;
-  font-family: Poppins;
+  font-family: Poppins, Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 32px;
   line-height: 100%;
@@ -108,7 +109,6 @@
 
 .modal__label {
   font-size: 16px;
-  margin-bottom: 8px;
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 500;
   margin: 0 0 32px;
@@ -124,7 +124,6 @@
   height: 52px;
   border-radius: 8px;
   border: 1px solid #2121214d;
-  width: 630px;
   width: 100%;
 }
 
@@ -164,7 +163,6 @@
 
   .modal__input {
     font-size: 16px;
-    max-width: none;
   }
 
   .modal__container {
@@ -188,5 +186,9 @@
 
   .modal_type_preview {
     max-width: unset;
+  }
+
+  .modal__caption {
+    font-size: 16px;
   }
 }
