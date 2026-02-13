@@ -15,9 +15,11 @@
   </head>
   <body>
     <div class="page">
+      <!--- Header Begins Here -->
       <header class="header">
         <img src="./images/Logo.svg" alt="Spots Logo" class="header__logo" />
       </header>
+      <!--- Main Begins Here -->
       <main class="content">
         <section class="profile page__section">
           <img
@@ -37,7 +39,7 @@
           </button>
         </section>
         <section class="cards page__section">
-          <!-- cards section content here -->
+          <!-- Cards Section Content Here -->
           <ul class="cards__list">
             <template id="card-template">
               <li class="card">
@@ -56,9 +58,11 @@
           </ul>
         </section>
       </main>
+      <!-- Footer Begins Here-->
       <footer class="footer page__section">
         <p class="footer__title">2025 &copy; Spots</p>
       </footer>
+      <!--- Modals Start Here -->
       <div id="edit-profile-modal" class="modal">
         <div class="modal__container">
           <button type="button" class="modal__close-button">
@@ -115,6 +119,19 @@
             </label>
             <button type="submit" class="modal__save-button">Save</button>
           </form>
+        </div>
+      </div>
+      <div id="preview-modal" class="modal">
+        <div class="modal__container">
+          <button type="button" class="modal__close-button">
+            <img src="./images/CloseIcon.svg" alt="Close" />
+          </button>
+          <img
+            src="https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg"
+            alt=""
+            class="modal__image"
+          />
+          <p class="modal__title">Golden gate Bridge</p>
         </div>
       </div>
     </div>
