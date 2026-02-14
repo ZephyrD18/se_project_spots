@@ -82,7 +82,7 @@
 
 .modal__close_type_preview {
   top: 0;
-  right: -52.5px;
+  right: -32px;
   opacity: 1;
 }
 
@@ -115,6 +115,7 @@
 }
 
 .modal__input {
+  padding: 16px 12px 16px;
   box-sizing: border-box;
   display: block;
   margin: 8px 0 0;
@@ -177,7 +178,7 @@
 
   .modal__close_type_preview {
     top: -48px;
-    right: 0;
+    right: -36;
   }
 
   .modal__image {
