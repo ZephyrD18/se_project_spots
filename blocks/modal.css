@@ -27,7 +27,6 @@
   transition:
     opacity 0.3s ease,
     visibility 0s;
-
   pointer-events: auto;
 }
 
@@ -80,7 +79,7 @@
   opacity: 0.4;
 }
 
-.modal__close_type_preview {
+.modal__close-button_type_preview {
   top: 0;
   right: -32px;
   opacity: 1;
@@ -90,7 +89,7 @@
   opacity: 1;
 }
 
-.modal__close_type_preview:hover {
+.modal__close-button_type_preview:hover {
   opacity: 0.4;
 }
 
@@ -176,9 +175,9 @@
     right: 12px;
   }
 
-  .modal__close_type_preview {
+  .modal__close-button_type_preview {
     top: -48px;
-    right: -36;
+    right: -36px;
   }
 
   .modal__image {
