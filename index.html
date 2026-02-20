@@ -72,7 +72,7 @@
             <img src="./images/CloseIcon.svg" alt="Close" />
           </button>
           <h2 class="modal__title">Edit Profile</h2>
-          <form class="modal__form">
+          <form class="modal__form" novalidate>
             <label for="profile-name-input" class="modal__label">
               Name
               <input
@@ -81,7 +81,10 @@
                 class="modal__input"
                 placeholder="Type your name"
                 required
+                minlength="2"
+                maxlength="40"
               />
+              <span class="modal__error" id="profile-name-input-error"></span>
             </label>
 
             <label for="profile-description-input" class="modal__label">
@@ -92,7 +95,13 @@
                 class="modal__input"
                 placeholder="Describe yourself"
                 required
+                minlength="2"
+                maxlength="200"
               />
+              <span
+                class="modal__error"
+                id="profile-description-input-error"
+              ></span>
             </label>
 
             <button type="submit" class="modal__save-button">Save</button>
@@ -106,7 +115,7 @@
             <img src="./images/CloseIcon.svg" alt="Close" />
           </button>
           <h2 class="modal__title">New Post</h2>
-          <form class="modal__form">
+          <form class="modal__form" novalidate>
             <label for="post-link-input" class="modal__label">
               Image link
               <input
@@ -116,6 +125,7 @@
                 placeholder="Paste a link to the picture"
                 required
               />
+              <span class="modal__error" id="post-link-input-error"></span>
             </label>
 
             <label for="post-caption-input" class="modal__label">
@@ -126,7 +136,10 @@
                 class="modal__input"
                 placeholder="Type your caption"
                 required
+                minlength="2"
+                maxlength="30"
               />
+              <span class="modal__error" id="post-caption-input-error"></span>
             </label>
 
             <button type="submit" class="modal__save-button">Save</button>
@@ -148,6 +161,7 @@
       </div>
     </div>
 
+    <script src="./scripts/validation.js"></script>
     <script src="./scripts/index.js"></script>
   </body>
 </html>

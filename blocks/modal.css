@@ -151,6 +151,32 @@
   opacity: 0.8;
 }
 
+.modal__error {
+  display: none;
+  margin-top: 8px;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.2;
+  color: #ff0000;
+}
+
+.modal__error_visible {
+  display: block;
+}
+
+.modal__input_type_error {
+  border-color: #ff0000;
+}
+
+.modal__save-button_disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.modal__label {
+  margin: 0 0 24px;
+}
+
 @media screen and (max-width: 627px) {
   .modal__save-button {
     width: 100%;

@@ -25,6 +25,12 @@ const initialCards = [
   },
 ];
 
+// -------------------- Config from validation.js --------------------
+
+const validationSettings = window.validationConfig;
+
+// -------------------- DOM Elements --------------------
+
 const editProfileButton = document.querySelector(".profile__edit-button");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 
@@ -60,19 +66,48 @@ const cardsList = document.querySelector(".cards__list");
 
 // -------------------- Modal Functions --------------------
 
+function handleEscClose(evt) {
+  if (evt.key === "Escape") {
+    const openedModal = document.querySelector(".modal.modal_is-opened");
+    if (openedModal) closeModal(openedModal);
+  }
+}
+
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
+  document.addEventListener("keydown", handleEscClose);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
+
+  // Reset form
+  const form = modal.querySelector(".modal__form");
+  if (form) {
+    form.reset();
+    window.resetValidation(form, validationSettings);
+  }
+
+  if (!document.querySelector(".modal.modal_is-opened")) {
+    document.removeEventListener("keydown", handleEscClose);
+  }
 }
 
-// Universal close handler
+// Close buttons
 const closeButtons = document.querySelectorAll(".modal__close-button");
 closeButtons.forEach((button) => {
   const modal = button.closest(".modal");
   button.addEventListener("click", () => closeModal(modal));
+});
+
+// Overlay click close
+const modals = document.querySelectorAll(".modal");
+modals.forEach((modal) => {
+  modal.addEventListener("mousedown", (evt) => {
+    if (evt.target === modal) {
+      closeModal(modal);
+    }
+  });
 });
 
 // -------------------- Card Functions --------------------
@@ -109,7 +144,6 @@ function getCardElement(data) {
   return cardElement;
 }
 
-// Universal render function
 function renderCard(item, method = "prepend") {
   const cardElement = getCardElement(item);
   cardsList[method](cardElement);
@@ -120,14 +154,17 @@ function renderCard(item, method = "prepend") {
 editProfileButton.addEventListener("click", () => {
   editProfileNameInput.value = profileNameEl.textContent;
   editProfileDescriptionInput.value = profileDescriptionEl.textContent;
+
+  window.resetValidation(editProfileForm, validationSettings);
+
   openModal(editProfileModal);
 });
 
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
 
-  profileNameEl.textContent = editProfileNameInput.value;
-  profileDescriptionEl.textContent = editProfileDescriptionInput.value;
+  profileNameEl.textContent = editProfileNameInput.value.trim();
+  profileDescriptionEl.textContent = editProfileDescriptionInput.value.trim();
 
   closeModal(editProfileModal);
 }
@@ -146,13 +183,13 @@ function handleAddCardSubmit(evt) {
   const name = nameInputEl.value.trim();
   const link = linkInputEl.value.trim();
 
-  if (!name || !link) {
-    return;
-  }
+  if (!name || !link) return;
 
-  renderCard({ name, link }); // default = prepend
+  renderCard({ name, link });
 
   evt.target.reset();
+  window.resetValidation(addCardFormElement, validationSettings);
+
   closeModal(newPostModal);
 }
 
