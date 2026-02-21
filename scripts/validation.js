@@ -1,3 +1,35 @@
+// -------------------- Helpers --------------------
+
+function getTrimmedValue(inputEl) {
+  return inputEl.value.trim();
+}
+
+function setTrimmedCustomValidity(inputEl) {
+  if (inputEl.type !== "text") {
+    inputEl.setCustomValidity("");
+    return;
+  }
+
+  const trimmed = getTrimmedValue(inputEl);
+  const min = inputEl.minLength || 0;
+
+  // Required (trim-aware)
+  if (inputEl.required && trimmed.length === 0) {
+    inputEl.setCustomValidity("Please fill out this field.");
+    return;
+  }
+
+  // Minlength (trim-aware)
+  if (min && trimmed.length > 0 && trimmed.length < min) {
+    inputEl.setCustomValidity(`Please enter at least ${min} characters.`);
+    return;
+  }
+
+  inputEl.setCustomValidity("");
+}
+
+// -------------------- Error UI --------------------
+
 function showInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
   const errorEl = formEl.querySelector(`#${inputEl.id}-error`);
   if (!errorEl) return;
@@ -16,8 +48,10 @@ function hideInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
   errorEl.classList.remove(errorClass);
 }
 
+// -------------------- Core Validation --------------------
+
 function hasInvalidInput(inputList) {
-  return inputList.some((inputEl) => !inputEl.validity.valid);
+  return inputList.some((inputEl) => !inputEl.checkValidity());
 }
 
 function toggleButtonState(inputList, buttonEl, inactiveButtonClass) {
@@ -30,20 +64,32 @@ function toggleButtonState(inputList, buttonEl, inactiveButtonClass) {
   }
 }
 
+function validateInput(formEl, inputEl, config) {
+  setTrimmedCustomValidity(inputEl);
+
+  if (!inputEl.checkValidity()) {
+    showInputError(formEl, inputEl, config);
+  } else {
+    hideInputError(formEl, inputEl, config);
+  }
+}
+
 function setEventListeners(formEl, config) {
   const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
   const buttonEl = formEl.querySelector(config.submitButtonSelector);
 
+  // Initial state
+  inputList.forEach((inputEl) => setTrimmedCustomValidity(inputEl));
   toggleButtonState(inputList, buttonEl, config.inactiveButtonClass);
 
   inputList.forEach((inputEl) => {
     inputEl.addEventListener("input", () => {
-      if (!inputEl.validity.valid) {
-        showInputError(formEl, inputEl, config);
-      } else {
-        hideInputError(formEl, inputEl, config);
-      }
+      validateInput(formEl, inputEl, config);
+      toggleButtonState(inputList, buttonEl, config.inactiveButtonClass);
+    });
 
+    inputEl.addEventListener("blur", () => {
+      validateInput(formEl, inputEl, config);
       toggleButtonState(inputList, buttonEl, config.inactiveButtonClass);
     });
   });
@@ -51,21 +97,22 @@ function setEventListeners(formEl, config) {
 
 function enableValidation(config) {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
-
-  formList.forEach((formEl) => {
-    setEventListeners(formEl, config);
-  });
+  formList.forEach((formEl) => setEventListeners(formEl, config));
 }
 
 function resetValidation(formEl, config) {
   const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
   const buttonEl = formEl.querySelector(config.submitButtonSelector);
 
-  inputList.forEach((inputEl) => hideInputError(formEl, inputEl, config));
+  inputList.forEach((inputEl) => {
+    inputEl.setCustomValidity("");
+    hideInputError(formEl, inputEl, config);
+  });
+
   toggleButtonState(inputList, buttonEl, config.inactiveButtonClass);
 }
 
-// -------------------- Validation Config + Enable --------------------
+// -------------------- Config + Enable (Required in validation.js) --------------------
 
 const validationConfig = {
   formSelector: ".modal__form",
