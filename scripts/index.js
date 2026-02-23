@@ -81,13 +81,6 @@ function openModal(modal) {
 function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
 
-  // Reset form + validation on close (overlay/Esc/X)
-  const form = modal.querySelector(".modal__form");
-  if (form) {
-    form.reset();
-    window.resetValidation(form, validationSettings);
-  }
-
   if (!document.querySelector(".modal.modal_is-opened")) {
     document.removeEventListener("keydown", handleEscClose);
   }
@@ -155,40 +148,10 @@ function triggerValidationUI(formEl) {
   const inputs = Array.from(
     formEl.querySelectorAll(validationSettings.inputSelector),
   );
-  inputs.forEach((input) =>
-    input.dispatchEvent(new Event("input", { bubbles: true })),
-  );
-}
 
-function isTrimmedTextTooShort(inputEl) {
-  if (inputEl.type !== "text") return false;
-
-  const min = inputEl.minLength || 0;
-  if (!min) return false;
-
-  const trimmedLength = inputEl.value.trim().length;
-
-  if (inputEl.required && trimmedLength === 0) return true;
-
-  if (trimmedLength > 0 && trimmedLength < min) return true;
-
-  return false;
-}
-
-function applyTrimmedValidityMessage(inputEl) {
-  if (!isTrimmedTextTooShort(inputEl)) {
-    inputEl.setCustomValidity("");
-    return;
-  }
-
-  if (inputEl.required && inputEl.value.trim().length === 0) {
-    inputEl.setCustomValidity("Please fill out this field.");
-    return;
-  }
-
-  inputEl.setCustomValidity(
-    `Please enter at least ${inputEl.minLength} characters.`,
-  );
+  inputs.forEach((input) => {
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+  });
 }
 
 // -------------------- Edit Profile --------------------
@@ -205,11 +168,9 @@ editProfileButton.addEventListener("click", () => {
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
 
-  applyTrimmedValidityMessage(editProfileNameInput);
-  applyTrimmedValidityMessage(editProfileDescriptionInput);
+  triggerValidationUI(editProfileForm);
 
   if (!editProfileForm.checkValidity()) {
-    triggerValidationUI(editProfileForm);
     return;
   }
 
@@ -230,10 +191,9 @@ newPostButton.addEventListener("click", () => {
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
 
-  applyTrimmedValidityMessage(nameInputEl);
+  triggerValidationUI(addCardFormElement);
 
   if (!addCardFormElement.checkValidity()) {
-    triggerValidationUI(addCardFormElement);
     return;
   }
 

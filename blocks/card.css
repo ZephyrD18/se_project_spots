@@ -57,7 +57,7 @@
   height: 20px;
   border: none;
   background-color: transparent;
-  opacity: 40%;
+  opacity: 0.4;
   cursor: pointer;
   padding: 0;
   margin: 0;
@@ -69,7 +69,6 @@
 
 .card__like-button_active {
   background-image: url(../images/LikeActive.svg);
-  cursor: pointer;
   opacity: 1;
   background-repeat: no-repeat;
 }
