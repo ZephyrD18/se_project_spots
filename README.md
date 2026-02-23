@@ -70,4 +70,4 @@ Software Engineer in training
 
 [This webpage is deployed to GitHub Pages!!](https://zephyrd18.github.io/se_project_spots/)
 
-[Pitch Video](https://drive.google.com/file/d/1bNlKfooz_r0k18LwhILy6NtJisVLVTZW/view?usp=sharing)
+[Pitch Video](https://www.loom.com/share/bbe3b41f114b406faf59b9b72a517f76)
