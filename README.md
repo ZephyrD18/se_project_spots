@@ -105,4 +105,4 @@ Software Engineer in training
 
 [Live Project on GitHub Pages](https://zephyrd18.github.io/se_project_spots/)
 
-[Pitch Video](https://www.loom.com/share/bbe3b41f114b406faf59b9b72a517f76)2
+[Pitch Video](https://www.loom.com/share/9a4484a802a04bc19e7247af60c1044c)
